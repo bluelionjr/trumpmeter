@@ -11,9 +11,25 @@
   </head>
 
   <body>
+    <% if notice %>
+      <p class="notification is-success">
+        <!-- #TODO: Figure out how to make this close -->
+        <button type="button" class="delete"></button>
+        <%= notice %>
+      </p>
+    <% end %>
+    <% if alert %>
+      <p class="notification is-danger">
+        <button type="button" class="delete"></button>
+        <%= alert %>
+      </p>
+    <% end %>
+
     <nav class="nav">
       <div class="nav-left">
         <%= link_to "Trump Meter", welcome_index_path, class: 'nav-item' %>
+        <%= link_to "About / Contact", welcome_about_path, class: 'nav-item' %>
+        <%= link_to "Shop", welcome_shop_path, class: 'nav-item' %>
       </div>
 
       <div class="nav-center">
@@ -30,16 +46,57 @@
       </div>
 
       <div class="nav-right">
-        <%= link_to "About / Contact", welcome_about_path, class: 'nav-item' %>
-        <%= link_to "Shop", welcome_shop_path, class: 'nav-item' %>
-        <div class="block">
-          <a class="button is-dark is-large">Sign In</a>
-        </div>
+        <div class="nav-item">
+          <p class="control">
+            <% if current_user %>
+            Signed in as: <strong><%= current_user.email %></strong>
+            <div class="nav-item">
+              <p class="control">|
+              <%= link_to 'Edit profile', edit_user_registration_path %>
+              </p>
+            </div>
+            <!-- Nav bar sign out -->
+            <div class="nav-item">
+              <div class="button is-outlined is-info">
+                <p class="control">
+                  <span class="icon">
+                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                  </span>
+                  <span>
+                    <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+                  </span>
+                </p>
+              </div>
+            </div>
+
+            <% else %>
+            <div class="nav-item">
+              <div class="button is-outlined is-info">
+                <p class="control">
+                  <span class="icon">
+                    <i class="fa fa-sign-in" aria-hidden="true"></i>
+                  </span>
+                  <span>
+                    <%= link_to "Sign in", new_user_session_path %>
+                  </span>
+                </p>
+              </div>
+            </div>
+        <% end %>
       </div>
     </nav>
 
 
+
+
+
+
+    <!-- This sets off an ActionController::RoutingError (no route matches [GET] "../javascripts/bulma.js") -->
+    <!-- This is the script for the hamburger menu that I haven't included yet -->
+    <!-- <script async type="text/javascript" src="../javascripts/bulma.js"></script> -->
+
+
     <%= yield %>
-    <script async type="text/javascript" src="bulma.js"></script>
+
   </body>
 </html>
