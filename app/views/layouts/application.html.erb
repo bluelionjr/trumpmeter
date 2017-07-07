@@ -1,14 +1,45 @@
 <!DOCTYPE html>
 <html>
   <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Trumpmeter</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <nav class="nav">
+      <div class="nav-left">
+        <%= link_to "Trump Meter", welcome_index_path, class: 'nav-item' %>
+      </div>
+
+      <div class="nav-center">
+        <a class="nav-item">
+          <span class="icon">
+            <i class="fa fa-twitter"></i>
+          </span>
+        </a>
+        <a class="nav-item" href="http://www.facebook.com">
+          <span class="icon">
+            <i class="fa fa-facebook"></i>
+          </span>
+        </a>
+      </div>
+
+      <div class="nav-right">
+        <%= link_to "About / Contact", welcome_about_path, class: 'nav-item' %>
+        <%= link_to "Shop", welcome_shop_path, class: 'nav-item' %>
+        <div class="block">
+          <a class="button is-dark is-large">Sign In</a>
+        </div>
+      </div>
+    </nav>
+
+
     <%= yield %>
+    <script async type="text/javascript" src="bulma.js"></script>
   </body>
 </html>
