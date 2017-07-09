@@ -12,6 +12,7 @@
 
   <body>
     <% if notice %>
+    <div class="container">
       <p class="notification is-success">
         <!-- #TODO: Figure out how to make this close -->
         <button type="button" class="delete"></button>
@@ -23,8 +24,9 @@
         <button type="button" class="delete"></button>
         <%= alert %>
       </p>
+    </div>
     <% end %>
-
+<div class="container">
     <nav class="nav">
       <div class="nav-left">
         <%= link_to "Trump Meter", welcome_index_path, class: 'nav-item' %>
@@ -57,37 +59,21 @@
             </div>
             <!-- Nav bar sign out -->
             <div class="nav-item">
-              <div class="button is-outlined is-info">
                 <p class="control">
-                  <span class="icon">
-                    <i class="fa fa-sign-out" aria-hidden="true"></i>
-                  </span>
-                  <span>
-                    <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
-                  </span>
+                    <%= link_to " Sign Out", destroy_user_session_path, class: "button fa fa-sign-out is-outlined is-info", method: :delete %>
                 </p>
-              </div>
             </div>
-
             <% else %>
             <div class="nav-item">
-              <div class="button is-outlined is-info">
+                <%= link_to "Sign Up", new_user_registration_path %>
                 <p class="control">
-                  <span class="icon">
-                    <i class="fa fa-sign-in" aria-hidden="true"></i>
-                  </span>
-                  <span>
-                    <%= link_to "Sign in", new_user_session_path %>
-                  </span>
+                    <%= link_to " Sign In", new_user_session_path, class: "button fa fa-sign-in is-outlined is-info" %>
                 </p>
-              </div>
             </div>
-        <% end %>
-      </div>
+            <% end %>
+        </div>
     </nav>
-
-
-
+  </div>
 
 
 
