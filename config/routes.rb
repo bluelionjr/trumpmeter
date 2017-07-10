@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
+
   devise_for :users
-  
+
   root 'welcome#index'
 
 
@@ -9,5 +10,7 @@ Rails.application.routes.draw do
   get 'welcome/about'
 
   get 'welcome/shop'
+
+  resources :polls
 
 end
