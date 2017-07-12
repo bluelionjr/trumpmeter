@@ -1,2 +1,39 @@
-<h1>Polls#new</h1>
-<p>Find me in app/views/polls/new.html.erb</p>
+<br>
+<div class="flex is-flex">
+  <div class="section">
+    <div class="container is-fluid">
+      <div class="block">
+        <h1 class="title is-1">Polls#new</h1>
+        <p>Find me in app/views/polls/new.html.erb</p>
+
+
+        <p class="title is-3">
+          This is the where you tell the world what you think of the president.  It is meant to be accessible
+          at all times.  You can change your vote any time you like.
+        </p>
+
+        <p class="title is-2">
+          Do you currently approve or disapprove of how Donald Trump is doing as president of the United States?
+        </p>
+
+        <%= current_user.poll.vote %>
+
+
+        <div class="field">
+          <%= form_for @poll do |f| %>
+          <%= radio_button_tag(:vote, "approve") %>
+          <%= label_tag(:vote_approve, "Approve") %>
+          <%= radio_button_tag(:vote, "disapprove") %>
+          <%= label_tag(:vote_disapprove, "Disapprove") %>
+          <%= radio_button_tag(:vote, "novote") %>
+          <%= label_tag(:vote_novote, "No Vote Right Now") %>
+          <div class="actions">
+            <%= f.submit "Save", class: "button is-success is-medium" %>
+          </div>
+          <% end %>
+
+        </div>
+</div>
+</div>
+</div>
+</div>

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe PollsController, type: :controller do
  user = FactoryGirl.create(:user)
- test_poll = Poll.create!(vote: "approve", user_id: user.id)
+ test_poll = Poll.create!(vote: "approve", user: user)
 
   describe "GET #new" do
     it "returns http success" do
@@ -20,7 +20,7 @@ RSpec.describe PollsController, type: :controller do
     it "instantiates @poll" do
       sign_in user
       get :new
-      expect(assigns(:test_poll)).not_to be_nil
+      expect(assigns(:poll)).not_to be_nil
     end
   end
 

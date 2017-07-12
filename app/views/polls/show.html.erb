@@ -1,11 +1,33 @@
-<br>
-<h1 class="title">Your current vote</h1>
-<br>
+<!-- Amazon banner -->
+<section class="section">
+  <div class="container">
+    <div class="box">
+    <div class="columns">
+      <div class="column">
+          <script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=f8d1a5ec-c24f-4c27-9db4-3af9f065b289"></script>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
 
-<h2 class="subtitle">Admire your vote here<h2>
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column">
+        <h1 class="title">Your current vote:<h1>
+          <h2 class="subtitle"><%= link_to current_user.poll.vote.upcase, edit_poll_path(current_user.poll) %></h2>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <%= @poll.vote %>
+
   <br>
   <%= @poll.user.email %>
   <br>
   <%= @poll.user.state %>
+
+  <br>
+
+  <h1>Test</h1>
