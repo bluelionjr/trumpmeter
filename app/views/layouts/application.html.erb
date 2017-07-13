@@ -36,7 +36,11 @@
           <%= link_to "Home", welcome_index_path, class: 'nav-item' %>
           <%= link_to "About", welcome_about_path, class: 'nav-item' %>
           <%= link_to "Shop", welcome_shop_path, class: 'nav-item' %>
+          <% if current_user %>
           <%= link_to "Poll", poll_path(current_user.poll), class: 'nav-item' %>
+          <% else %>
+          <%= link_to "Poll", new_poll_path, class: 'nav-item' %>
+          <% end %>
         </div>
 
         <div class="nav-center">
