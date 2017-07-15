@@ -8,6 +8,7 @@
     <title>Trumpmeter</title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -36,7 +37,7 @@
           <%= link_to "Home", welcome_index_path, class: 'nav-item' %>
           <%= link_to "About", welcome_about_path, class: 'nav-item' %>
           <%= link_to "Shop", welcome_shop_path, class: 'nav-item' %>
-          <% if current_user %>
+          <% if current_user && (current_user.poll != nil) %>
           <%= link_to "Poll", poll_path(current_user.poll), class: 'nav-item' %>
           <% else %>
           <%= link_to "Poll", new_poll_path, class: 'nav-item' %>

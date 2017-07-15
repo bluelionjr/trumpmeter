@@ -1,13 +1,16 @@
 <!-- Amazon banner -->
 <section class="section">
   <div class="container">
-    <div class="box">
+
     <div class="columns">
-      <div class="column">
-          <script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=f8d1a5ec-c24f-4c27-9db4-3af9f065b289"></script>
+      <div class="column has-text-centered">
+          <p><script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=f8d1a5ec-c24f-4c27-9db4-3af9f065b289"></script></p>
+      </div>
+      <div class="column is-offset-1 has-text-centered">
+        <a class="twitter-timeline" data-height="300" data-width="420" data-theme="dark" href="https://twitter.com/realDonaldTrump">Tweets by realDonaldTrump</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
       </div>
     </div>
-    </div>
+
   </div>
 </section>
 
@@ -15,12 +18,25 @@
   <div class="container">
     <div class="columns">
       <div class="column">
+        <div class="box">
         <h1 class="title">Your current vote:<h1>
-          <h2 class="subtitle"><%= link_to current_user.poll.vote.upcase, edit_poll_path(current_user.poll) %></h2>
+          <h2 class="subtitle"><%= link_to current_user.poll.vote.upcase, edit_poll_path(current_user.poll), class: "button is-info" %></h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="column is-half">
+        <%= pie_chart(vote_count) %>
+      </div>
+      <div class="column is-half">
+        <%= pie_chart(vote_count) %>
       </div>
     </div>
   </div>
 </section>
+
+
 
 
   <br>
@@ -29,5 +45,3 @@
   <%= @poll.user.state %>
 
   <br>
-
-  <h1>Test</h1>

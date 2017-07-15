@@ -37,7 +37,7 @@
         <div class="field">
           <p class="control">
           <%= f.label :state %><br />
-          <%= f.text_field :state, autofocus: true, placeholder: "Enter your state", class: "input" %>
+          <%= f.select :state, options_for_select(us_states, :selected => @user.state), {}, {:include_blank => true, :autofocus => true, :class => "input"} %>
         </p>
         </div>
 

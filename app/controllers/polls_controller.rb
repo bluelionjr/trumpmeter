@@ -1,4 +1,5 @@
 class PollsController < ApplicationController
+
   def new
     @poll = Poll.new
   end
@@ -6,7 +7,7 @@ class PollsController < ApplicationController
   def create
     @poll = Poll.new
     @poll.user = current_user
-    
+
 
     if @poll.save
       flash[:notice] = "Your vote was saved!"
