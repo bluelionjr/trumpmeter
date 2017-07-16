@@ -26,15 +26,19 @@
     </div>
 
     <div class="columns">
-      <div class="column is-half">
+      <div class="column is-half has-text-centered">
+        <h3 class="subtitle">National</h3>
         <%= pie_chart(vote_count) %>
       </div>
-      <div class="column is-half">
-        <%= pie_chart(vote_count) %>
+      <div class="column is-half has-text-centered">
+        <h3 class="subtitle"><%= current_user.state %></h3>
+        <%= line_chart Poll.group_by_day(:created_at).count %>
       </div>
     </div>
-  </div>
 </section>
+
+
+
 
 
 
