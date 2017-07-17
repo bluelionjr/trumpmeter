@@ -7,7 +7,7 @@
         </p>
         <p class="notification is-info title">
           <% if @poll.vote == "novote" %>
-          You neither approve or disapprove of the president right now.
+          You neither approve nor disapprove of the president right now.
           <% else %>
           You currently <%= @poll.vote %> of the president.
           <% end %>
@@ -103,7 +103,6 @@
     </div>
   </div>
 </br>
-
 
   <div class="container">
     <div class="columns">

@@ -1,40 +1,58 @@
 <!-- Amazon banner -->
 <section class="section">
   <div class="container">
-
     <div class="columns">
       <div class="column has-text-centered">
           <p><script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=f8d1a5ec-c24f-4c27-9db4-3af9f065b289"></script></p>
       </div>
+      <!-- Current vote -->
       <div class="column is-offset-1 has-text-centered">
-        <a class="twitter-timeline" data-height="300" data-width="420" data-theme="dark" href="https://twitter.com/realDonaldTrump">Tweets by realDonaldTrump</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <div class="notification is-success" style="margin-top: 45px;">
+          <h1 class="title">Your current vote:<h1>
+          <h2 class="subtitle"><%= link_to current_user.poll.vote.upcase, edit_poll_path(current_user.poll), class: "button is-info" %></h2>
+          <p class="subtitle">Click to update your vote</p>
+        </div>
       </div>
     </div>
-
   </div>
 </section>
 
 <section class="section">
-  <div class="container">
     <div class="columns">
-      <div class="column">
-        <div class="box">
-        <h1 class="title">Your current vote:<h1>
-          <h2 class="subtitle"><%= link_to current_user.poll.vote.upcase, edit_poll_path(current_user.poll), class: "button is-info" %></h2>
-        </div>
-      </div>
-    </div>
 
-    <div class="columns">
       <div class="column is-half has-text-centered">
-        <h3 class="subtitle">National</h3>
-        <%= pie_chart(vote_count) %>
+        <p class="notification is-info title">National Live Results</p>
+        <%= area_chart(vote_count) %>
       </div>
+
+      <!-- #TODO: make correct line chart -->
       <div class="column is-half has-text-centered">
-        <h3 class="subtitle"><%= current_user.state %></h3>
+      <p class="notification is-info title">Approval Rating by Month</p>
         <%= line_chart Poll.group_by_day(:created_at).count %>
       </div>
     </div>
+  </br>
+  <div class="columns">
+
+    <div class="column is-half has-text-centered">
+      <p class="notification is-info title">Live Results</p>
+      <%= pie_chart(vote_count) %>
+    </div>
+
+    <!-- #TODO: Results by state -->
+    <div class="column is-half has-text-centered">
+    <p class="notification is-info title">COMING SOON: Results by State</p>
+      <%= pie_chart(vote_count) %>
+    </div>
+  </div>
+
+    <!-- Trump's Twitter feed -->
+    <div class="container">
+      <div class="columns">
+        <div class="column has-text-centered">
+          <a class="twitter-timeline" data-height="300" data-width="820" data-theme="dark" href="https://twitter.com/realDonaldTrump">Tweets by realDonaldTrump</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+      </div>
 </section>
 
 
