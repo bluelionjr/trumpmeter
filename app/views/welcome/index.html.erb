@@ -23,10 +23,12 @@
                   <%= link_to "Sign Up", new_user_registration_path, class: "button is-info is-large"%>
                 </br>
                   <div class="column">
-
-                    <p class="subtitle">National Live Results
+                    <p>Already have an account? <%= link_to "Sign in here", new_user_session_path %> </p>
+                    <div class="column">
+                    <p class="subtitle">Live Results
                     <%= area_chart(vote_count) %>
                     </p>
+                  </div>
                   </div>
               </div>
             </div>

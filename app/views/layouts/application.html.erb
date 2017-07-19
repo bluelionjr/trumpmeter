@@ -80,25 +80,58 @@
                 <%= link_to "Poll", new_poll_path, class: 'navbar-item' %>
                 <% end %>
 
+                <% if user_signed_in? %>
+                <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-item' %>
+                <%= link_to "Sign Out", destroy_user_session_path, method: :delete, :class => "navbar-item" %>
+
+                <% else %>
+                <%= link_to "Sign Up", new_user_registration_path, :class => 'navbar-item' %>
+                <%= link_to "Sign In", new_user_session_path, :class => 'navbar-item' %>
+                <% end %>
+
 
 
                 <hr class="navbar-divider">
                 <div class="navbar-item">
                   <a href="https://www.teespring.com/stores/trumpmeter"><div>Teespring Store</div></a>
                 </div>
+
+                <div class="navbar-item">
+                  <% if user_signed_in? %>
+                  <%= image_tag current_user.avatar_url(35), class: "gravatar" %>
+                  <% end %>
+                </div>
+                <div class="navbar-item">
+                  <% if user_signed_in? %>
+
+                </div>
+                <div class="navbar-item">
+                  <%= current_user.email %>
+                </div>
+                  <% else %>
+                  <div class="navbar-item">
+                  <%= link_to "Sign Up", new_user_registration_path, :class => 'navbar-item' %>
+                  <%= link_to "Sign In", new_user_session_path, :class => 'navbar-item' %>
+                  <% end %>
+                </div>
+
+                </div>
               </div>
             </div>
           </div>
 
         <div class="navbar-end">
-          <a class="navbar-item" href="https://www.facebook.com" target="_blank">
-            Facebook
+          <a class="navbar-item is-hidden-mobile" href="https://www.facebook.com" target="_blank">
+            <span class="icon" style="color: #3b5998;">
+              <i class="fa fa-facebook"></i>
+            </span>
           </a>
-          <a class="navbar-item" href="https://twitter.com/jgthms" target="_blank">
-            Twitter
+          <a class="navbar-item is-hidden-mobile" href="https://twitter.com/jgthms" target="_blank">
+            <span class="icon" style="color: #55acee;">
+              <i class="fa fa-twitter"></i>
+            </span>
           </a>
           <div class="navbar-item">
-            <!-- <div class="field is-grouped"> -->
               <p class="control">
                 <a id="twitter"
                   class="button"
@@ -113,19 +146,6 @@
                   <span>Tweet</span>
                 </a>
               </p>
-              <p class="control">
-
-                <% if user_signed_in? %>
-                  <%= image_tag current_user.avatar_url(35), class: "gravatar" %>
-                <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-item' %>
-                <%= link_to "Sign Out", destroy_user_session_path, method: :delete, :class => "navbar-item button fa fa-sign-out is-outlined is-info" %>
-                <% else %>
-                <%= link_to "Sign Up", new_user_registration_path, :class => 'navbar-item' %> -
-                <%= link_to "Sign In", new_user_session_path, :class => 'navbar-item' %>
-                <% end %>
-
-              </p>
-            <!-- </div> -->
           </div>
         </div>
       </div>
@@ -161,5 +181,33 @@
         </div>
       </div>
     </section>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+      // Get all "navbar-burger" elements
+      var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+      // Check if there are any nav burgers
+      if ($navbarBurgers.length > 0) {
+
+        // Add a click event on each of them
+        $navbarBurgers.forEach(function ($el) {
+          $el.addEventListener('click', () => {
+
+            // Get the target from the "data-target" attribute
+            var target = $el.dataset.target;
+            var $target = document.getElementById(target);
+
+            // Toggle the class on both the "navbar-burger" and the "navbar-menu"
+            $el.classList.toggle('is-active');
+            $target.classList.toggle('is-active');
+
+          });
+        });
+      }
+
+    });
+    </script>
   </body>
 </html>
