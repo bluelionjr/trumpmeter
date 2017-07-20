@@ -1,13 +1,13 @@
 class PollsController < ApplicationController
+  before_action :authorize_user, except: [:new, :create]
 
   def new
     @poll = Poll.new
   end
 
   def create
-    @poll = Poll.new
+    @poll = Poll.new(poll_params)
     @poll.user = current_user
-    @poll.vote = params[:vote]
 
 
     if @poll.save
@@ -25,7 +25,7 @@ class PollsController < ApplicationController
 
   def update
     @poll = Poll.find(params[:id])
-    @poll.vote = params[:vote]
+    @poll.assign_attributes(poll_params)
 
     if @poll.save
       flash[:notice] = "Your vote was updated."
@@ -38,6 +38,21 @@ class PollsController < ApplicationController
 
   def show
     @poll = Poll.find(params[:id])
+  end
+
+  private
+
+  def poll_params
+    params.permit(:vote)
+  end
+
+  def authorize_user
+    poll = Poll.find(params[:id])
+
+    unless current_user == poll.user
+      flash[:alert] = "Oops.  You can't do that.  Have a look at our home page."
+      redirect_to welcome_index_path
+    end
   end
 
 end
