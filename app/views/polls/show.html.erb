@@ -2,9 +2,9 @@
 <section class="section">
   <div class="container">
     <div class="columns">
-      <div class="column has-text-centered">
+      <!-- <div class="column has-text-centered">
           <p><script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=69c55c1b-445e-49e4-897d-9d4ce39c8a35"></script></p>
-      </div>
+      </div> -->
       <!-- Current vote -->
       <div class="column is-offset-1 has-text-centered">
         <div class="notification is-success" style="margin-top: 45px;">
@@ -21,23 +21,20 @@
     <div class="columns">
 
       <div class="column is-half has-text-centered">
-        <p class="notification is-info title">National Live Results</p>
+        <p class="notification is-info title">Live Results</p>
         <%= area_chart(vote_count) %>
       </div>
-
-      <!-- #TODO: make correct line chart -->
+      
       <div class="column is-half has-text-centered">
-      <p class="notification is-info title">Approval Rating by Month</p>
-        <%= line_chart Poll.group_by_day(:created_at).count %>
+        <p class="notification is-info title">Live Results</p>
+        <%= pie_chart(vote_count) %>
       </div>
+
     </div>
   </br>
   <div class="columns">
 
-    <div class="column is-half has-text-centered">
-      <p class="notification is-info title">Live Results</p>
-      <%= pie_chart(vote_count) %>
-    </div>
+
 
     <!-- #TODO: Results by state -->
     <div class="column is-half has-text-centered">

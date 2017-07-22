@@ -14,8 +14,9 @@
  *= require_self
  */
 
-@import "bulma";
+
 @import "font-awesome";
+@import "bootstrap";
 
 
 input[type=radio] {
@@ -29,8 +30,4 @@ input[type=radio] {
 .radiotext {
   font-size: 110%;
   display: flex;
-}
-
-.navbar {
-  background-color: lightgray;
 }

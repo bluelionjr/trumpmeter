@@ -3,208 +3,92 @@
   <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="icon" href="/images/trumpmeter_stamp2.jpg">
     <title>Trumpmeter</title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
     <%= javascript_include_tag 'application', 'Chart.bundle', 'chartkick', 'data-turbolinks-track': 'reload' %>
-
   </head>
 
   <body>
-    <section class="hero">
+
       <% if notice %>
-        <p class="notification is-success">
-          <!-- #TODO: Figure out how to make this close -->
-          <button type="button" class="delete"></button>
-          <%= notice %>
-        </p>
+        <div class="alert alert-success alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <%= flash[:notice] %>
+        </div>
       <% end %>
       <% if alert %>
-        <p class="notification is-danger">
-          <button type="button" class="delete"></button>
-          <%= alert %>
-        </p>
+        <div class="alert alert-danger alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <%= flash[:alert] %>
+        </div>
       <% end %>
 
 
-      <nav class="navbar">
-        <div class="navbar-brand">
-          <a class="navbar-item" href="http://www.trumpmeter.co">
-            <img src="/images/trumpmeter_stamp2.jpg" alt="TrumpMeter Stamp Logo">
-          </a>
+    <nav class="navbar navbar-inverse bg-primary navbar-toggleable-md fixed-top">
+
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand btn btn-primary" href="/welcome/index">TrumpMeter</a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+
+          <li class="nav-item">
+            <%= link_to "Shop", welcome_shop_path, class: 'nav-link btn btn-primary' %>
+          </li>
+
+          <li class="nav-item">
+            <% if current_user && (current_user.poll != nil) %>
+            <%= link_to "Poll", poll_path(current_user.poll), class: 'nav-link btn btn-primary' %>
+            <% else %>
+            <%= link_to "Poll", new_poll_path, class: 'nav-link btn btn-primary' %>
+            <% end %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to "About", welcome_about_path, class: 'nav-link btn btn-primary' %>
+          </li>
 
 
+          <% if user_signed_in? %>
+          <li class="nav-item">
+              <%= link_to ("<i class='fa fa-user'></i> Edit Profile").html_safe, edit_user_registration_path, :class => 'nav-link btn btn-primary' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to ("<i class='fa fa-sign-out'></i> Sign Out").html_safe, destroy_user_session_path, method: :delete, :class => "nav-link btn btn-primary" %>
+          </li>
+            <% else %>
+          <li class="nav-item">
+            <%= link_to "Sign Up", new_user_registration_path, :class => 'nav-link btn btn-primary' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to ("<i class='fa fa-sign-in'></i> Sign In").html_safe, new_user_session_path, :class => 'nav-link btn btn-primary' %>
+            <% end %>
+          </li>
 
-          <div class="navbar-item is-hidden-desktop">
-              <p class="control">
-                <a id="twitter"
-                  class="button"
-                  data-social-network="Twitter"
-                  data-social-action="tweet"
-                  data-social-target="http://www.trumpmeter.co"
-                  target="_blank"
-                  href="https://twitter.com/intent/tweet?text=TrumpMeter.co: A fun real time presidential approval poll. &url=http://www.trumpmeter.co">
-                  <span class="icon">
-                    <i class="fa fa-twitter"></i>
-                  </span>
-                  <span>Tweet</span>
-                </a>
-              </p>
-          </div>
-
-          <div class="navbar-burger burger" data-target="navMenuExample">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
+          </ul>
         </div>
-
-        <div id="navMenuExample" class="navbar-menu">
-          <div class="navbar-start">
-            <div class="navbar-item has-dropdown is-hoverable">
-              <a class="navbar-link  is-active">
-                Navigation
-              </a>
-
-              <div class="navbar-dropdown ">
-                <%= link_to "Home", welcome_index_path, class: 'navbar-item' %>
-
-                <%= link_to "About", welcome_about_path, class: 'navbar-item' %>
-
-                <%= link_to "Shop", welcome_shop_path, class: 'navbar-item' %>
-
-                <% if current_user && (current_user.poll != nil) %>
-                <%= link_to "Update Vote", edit_poll_path(current_user.poll), class: 'navbar-item' %>
-                <% else %>
-                <%= link_to "Vote", new_poll_path, class: 'navbar-item' %>
-                <% end %>
-
-                <% if current_user && (current_user.poll != nil) %>
-                <%= link_to "Poll Results", poll_path(current_user.poll), class: 'navbar-item' %>
-                <% else %>
-                <%= link_to "Poll", new_poll_path, class: 'navbar-item' %>
-                <% end %>
-
-                <% if user_signed_in? %>
-                <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-item' %>
-                <%= link_to "Sign Out", destroy_user_session_path, method: :delete, :class => "navbar-item" %>
-
-                <% else %>
-                <%= link_to "Sign Up", new_user_registration_path, :class => 'navbar-item' %>
-                <%= link_to "Sign In", new_user_session_path, :class => 'navbar-item' %>
-                <% end %>
-
-
-
-                <hr class="navbar-divider">
-                <div class="navbar-item">
-                  <a href="https://www.teespring.com/stores/trumpmeter"><div>Teespring Store</div></a>
-                </div>
-
-                <div class="navbar-item">
-                  <% if user_signed_in? %>
-                  <%= image_tag current_user.avatar_url(35), class: "gravatar" %>
-                  <% end %>
-                </div>
-                <div class="navbar-item">
-                  <% if user_signed_in? %>
-
-                </div>
-                <div class="navbar-item">
-                  <%= current_user.email %>
-                </div>
-                  <% else %>
-                  <div class="navbar-item">
-                  <%= link_to "Sign Up", new_user_registration_path, :class => 'navbar-item' %>
-                  <%= link_to "Sign In", new_user_session_path, :class => 'navbar-item' %>
-                  <% end %>
-                </div>
-
-                </div>
-
-                <div class="navbar-item">
-                    <p class="control">
-                      <a id="twitter"
-                        class="button"
-                        data-social-network="Twitter"
-                        data-social-action="tweet"
-                        data-social-target="http://www.trumpmeter.co"
-                        target="_blank"
-                        href="https://twitter.com/intent/tweet?text=TrumpMeter.co: A fun real time presidential approval poll. &url=http://www.trumpmeter.co">
-                        <span class="icon">
-                          <i class="fa fa-twitter"></i>
-                        </span>
-                        <span>Tweet</span>
-                      </a>
-                    </p>
-                </div>
-
-                <a class="navbar-item" href="https://twitter.com" target="_blank">
-                  <span class="icon" style="color: #55acee;">
-                    <i class="fa fa-twitter"></i>
-                  </span>
-                </a>
-
-                <a class="navbar-item" href="https://www.facebook.com" target="_blank">
-                  <span class="icon" style="color: #3b5998;">
-                    <i class="fa fa-facebook"></i>
-                  </span>
-                </a>
-
-              </div>
-            </div>
-          </div>
       </div>
     </nav>
+  </br>
 
 
     <%= yield %>
 
-
-    <section class="hero is-dark">
-      <div class="hero-foot">
-        <div class="container">
-          <div class="tabs is-centered">
-            <ul>
-              <li><%= link_to "Home", welcome_index_path %></li>
-              <li><%= link_to "Contact", welcome_about_path %></li>
-              <li><%= link_to "Shop", welcome_shop_path %></li>
-              <li>&copy; 2017 TrumpMeter.co</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-
-      // Get all "navbar-burger" elements
-      var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
-
-      // Check if there are any nav burgers
-      if ($navbarBurgers.length > 0) {
-
-        // Add a click event on each of them
-        $navbarBurgers.forEach(function ($el) {
-          $el.addEventListener('click', () => {
-
-            // Get the target from the "data-target" attribute
-            var target = $el.dataset.target;
-            var $target = document.getElementById(target);
-
-            // Toggle the class on both the "navbar-burger" and the "navbar-menu"
-            $el.classList.toggle('is-active');
-            $target.classList.toggle('is-active');
-
-          });
-        });
-      }
-
-    });
-    </script>
+  <footer class="footer">
+    <div class="container text-center">
+      <span class="text-muted">
+          <%= link_to "Home", welcome_index_path %>
+          <%= link_to "About", welcome_about_path %>
+          <%= link_to "Shop", welcome_shop_path %>
+          &copy; 2017 TrumpMeter.co
+      </span>
+    </div>
+  </footer>
 
   </body>
 </html>

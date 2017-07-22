@@ -19,6 +19,7 @@ end
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
+gem 'sass'
 # Integrate Bulma with the rails asset pipeline
 gem 'bulma-rails', '~> 0.4.3'
 # Font Awesome
@@ -52,6 +53,8 @@ gem 'chartkick'
 gem 'groupdate'
 
 gem 'figaro'
+gem 'bootstrap'
+gem 'sprockets-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
