@@ -1,17 +1,16 @@
-<section class="section hero is-dark">
-  <div class="container">
-    <div class="columns">
-      <div class="column is-three-quarters has-text-centered">
-        <p class="title is-1">
+<div class="container">
+    <div class="row">
+      <div class="col">
+        <h1>
           Cast your vote!
-        </p>
-        <p class="title is-3">
+        </h1>
+        <h3 class="text-muted">
           You can change it any time you like.
-        </p>
+        </h3>
       </br>
-        <p class="title is-2">
+        <h4>
           Do you currently approve or disapprove of how Donald Trump is doing as president of the United States?
-        </p>
+        </h4>
       </div>
 
       <!-- <div class="column is-hidden-mobile has-text-right">
@@ -21,91 +20,80 @@
       </div> -->
 
     </div>
-  </div>
+  </div> <!-- container -->
+
   <br>
 
 
-    <div class="container">
+<div class="container">
+  <%= form_for @poll do |f| %>
+  <div class="card card-success text-center" style="width: 24rem;">
+  </br>
+    <label class="radio">
+    <%= radio_button_tag(:vote, "approve") %>
+    </label>
+    </br>
+    <span>
+      Approve for now
+    </span>
+    <span>
+      <i class="fa fa-thumbs-up fa-4x" aria-hidden="true"></i>
+    </span>
+  </div>
+  </br>
+  </br>
 
+  <div class="card card-danger text-center" style="width: 24rem;">
+  </br>
+    <label class="radio">
+    <%= radio_button_tag(:vote, "disapprove") %>
+    </label>
+    </br>
+    <span>
+      Disapprove for now
+    </span>
+    <span>
+      <i class="fa fa-thumbs-down fa-4x" aria-hidden="true"></i>
+    </span>
+  </div>
+  </br>
+  </br>
 
-      <%= form_for @poll do |f| %>
+  <div class="card card-warning text-center" style="width: 24rem;">
+  </br>
+    <label class="radio">
+    <%= radio_button_tag(:vote, "novote") %>
+    </label>
+    </br>
+    <span>
+      I'll sit out for now.
+    </span>
+    <span>
+      <i class="fa fa-hand-paper-o fa-4x" aria-hidden="true"></i>
+    </span>
+  </div>
+  </br>
+  </br>
+      <%= f.submit "Save Your Vote", class: "btn btn-primary btn-large" %>
 
-      <div class="columns">
-        <div class="column has-text-centered is-one-quarter">
-          <p class="notification is-success">
-            <label class="radio">
-              <%= radio_button_tag(:vote, "approve") %>
-            </label>
-            <span class="radiotext">
-              Approve for now
-            </span>
-            <span>
-              <i class="fa fa-thumbs-up fa-4x" aria-hidden="true"></i>
-            </span>
-        </p>
-        </div>
-
-      <div class="column has-text-centered is-one-quarter">
-        <p class="notification is-warning">
-          <label class="radio">
-            <%= radio_button_tag(:vote, "disapprove") %>
-          </label>
-          <span class="radiotext">
-            Disapprove for now
-          </span>
-          <span>
-            <i class="fa fa-thumbs-down fa-4x" aria-hidden="true"></i>
-          </span>
-        </p>
-      </div>
-
-
-      <div class="column has-text-centered is-one-quarter">
-        <p class="notification is-danger">
-          <label class="radio">
-            <%= radio_button_tag(:vote, "novote") %>
-          </label>
-          <span class="radiotext">
-            I'll sit out for now.
-          </span>
-          <span>
-            <i class="fa fa-hand-paper-o fa-4x" aria-hidden="true"></i>
-          </span>
-        </p>
-      </div>
-    </div>
-
-    <div class="actions">
-      <%= f.submit "Save Your Vote", class: "button is-white is-medium is-outlined" %>
-    </div>
       <% end %>
-    </div>
-
 </br>
 </br>
 
   <div class="container">
-    <div class="columns">
-      <div class="column is-three-quarters has-text-centered">
-        <p class="notification is-info title">
-          Do you wear shirts? Visit our store.
-          <i class="fa fa-arrow-right fa-lg" aria-hidden="true"></i>
-          <i class="fa fa-arrow-right fa-lg" aria-hidden="true"></i>
-          <i class="fa fa-arrow-right fa-lg" aria-hidden="true"></i>
-          <i class="fa fa-arrow-right fa-lg" aria-hidden="true"></i>
-          <%= link_to "Store", welcome_shop_path, class: 'button is-primary is-medium' %>
-        </p>
+    <div class="row">
+      <div class="card card-danger card-inverse text-white" style="width: 24rem;">
+
+          Do you wear shirts? Visit our store after you vote.
+
       </div>
     </div>
+
   </div>
 </br>
 
-  <div class="container">
-    <div class="columns">
-      <div class="column is-three-quarters">
+  <!-- <div>
+      <div>
         <script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=69c55c1b-445e-49e4-897d-9d4ce39c8a35"></script>
       </div>
-    </div>
-  </div>
-
-  </section>
+  </div> -->

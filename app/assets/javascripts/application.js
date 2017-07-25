@@ -16,6 +16,7 @@
 //= require turbolinks
 //= require Chart.bundle
 //= require chartkick
+//= require tether
 //= require_tree .
 
 // document.addEventListener('DOMContentLoaded', function () {

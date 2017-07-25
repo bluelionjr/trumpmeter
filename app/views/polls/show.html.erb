@@ -1,53 +1,55 @@
 <!-- Amazon banner -->
-<section class="section">
-  <div class="container">
-    <div class="columns">
-      <!-- <div class="column has-text-centered">
+<div class="container">
+
+      <!-- <div class="column text-center">
           <p><script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=69c55c1b-445e-49e4-897d-9d4ce39c8a35"></script></p>
       </div> -->
       <!-- Current vote -->
-      <div class="column is-offset-1 has-text-centered">
-        <div class="notification is-success" style="margin-top: 45px;">
-          <h1 class="title">Your current vote:<h1>
-          <h2 class="subtitle"><%= link_to current_user.poll.vote.upcase, edit_poll_path(current_user.poll), class: "button is-info" %></h2>
-          <p class="subtitle">Click to update your vote</p>
-        </div>
-      </div>
+  <div class="card card-outline-success" style="width: 24rem;">
+    <div class="card-header">
+      <h1>Your current vote:<h1>
     </div>
+    </br>
+    <h2 class="text-center"><%= link_to current_user.poll.vote.upcase, edit_poll_path(current_user.poll), class: "btn btn-success" %></h2>
+    <p class="text-center">Click to update your vote</p>
   </div>
-</section>
+</br>
+</br>
 
-<section class="section">
-    <div class="columns">
-
-      <div class="column is-half has-text-centered">
-        <p class="notification is-info title">Live Results</p>
-        <%= area_chart(vote_count) %>
-      </div>
-      
-      <div class="column is-half has-text-centered">
-        <p class="notification is-info title">Live Results</p>
-        <%= pie_chart(vote_count) %>
-      </div>
-
+<div class="card-group">
+  <div class="card card-outline-primary" style="width: 24rem;">
+    <div class="card-header">
+      <h2 class="text-center">Live Results</h2>
     </div>
-  </br>
-  <div class="columns">
-
-
-
-    <!-- #TODO: Results by state -->
-    <div class="column is-half has-text-centered">
-    <p class="notification is-info title">COMING SOON: Results by State</p>
-      <%= pie_chart(vote_count) %>
-    </div>
+    <%= area_chart(vote_count) %>
   </div>
+
+</br>
+</br>
+  <div class="card card-outline-primary" style="width: 24rem;">
+    <div class="card-header">
+      <h2 class="text-center">Live Results</h2>
+    </div>
+    <%= pie_chart(vote_count) %>
+  </div>
+</br>
+</br>
+  <div class="card card-outline-primary" style="width: 24rem;">
+    <div class="card-header">
+      <h2 class="text-center">COMING SOON: Results by state</h2>
+    </div>
+    <%= pie_chart(vote_count) %>
+  </div>
+</div> <!--card group -->
+</div> <!--container -->
+
+</br>
+
 
     <!-- Trump's Twitter feed -->
     <div class="container">
-      <div class="columns">
-        <div class="column has-text-centered">
+      <div class="col">
+        <div class="column text-center">
           <a class="twitter-timeline" data-height="300" data-width="820" data-theme="dark" href="https://twitter.com/realDonaldTrump">Tweets by realDonaldTrump</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
       </div>
-</section>
